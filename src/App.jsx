@@ -60,7 +60,7 @@ function App() {
               <div className="user">
                 <a href="#">
                   <img src="https://picsum.photos/30" alt=""/>
-                  <h2>User</h2>
+                  <h6>Benjamin Deltenre</h6>
                 </a>
               </div>
             </li>

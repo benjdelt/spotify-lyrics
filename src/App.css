@@ -57,8 +57,25 @@ header {
   font-weight: 600;                                                                                                               
 }
 
+
+.user img {
+  margin: 5px;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+
+.user h6 {
+  display: inline;
+  margin: 5px;
+}
+
 @media (max-width: 1200px) {
   #logo h2{
+    display: none;
+  }
+
+  .user h6{
     display: none;
   }
 }
@@ -72,17 +89,6 @@ header {
   .carousel {
     max-width: 200px;
   }
-}
-
-
-.user img {
-  border-radius: 100%;
-  width: 45px;
-  height: 45px;
-}
-
-.user h2 {
-  display: inline;
 }
 
 /* Main */
