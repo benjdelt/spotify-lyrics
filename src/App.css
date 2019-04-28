@@ -59,9 +59,21 @@ header {
 
 @media (max-width: 1200px) {
   #logo h2{
-      display: none;
+    display: none;
   }
 }
+
+@media (max-width: 575.98px) {
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  }
+  .carousel {
+    max-width: 200px;
+  }
+}
+
 
 .user img {
   border-radius: 100%;
@@ -78,4 +90,3 @@ header {
 main {
   background: #212121;
 }
-
