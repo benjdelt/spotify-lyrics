@@ -12,7 +12,10 @@ function App() {
         <header className="col-sm-2 order-sm-first">
           <ul className="nav flex-column">
             <li className="nav-item">
-              <h1 id="logo">Spotify Lyrics</h1>
+              <a href="#" id="logo">
+                <img src="/images/inverted-logo.png" alt="logo"/>
+                <h2>Spotify Lyrics</h2>
+              </a>
             </li>
             <li className="nav-item">
               <Carousel>
@@ -55,8 +58,10 @@ function App() {
             </li>
             <li className="nav-item">
               <div className="user">
-                <img src="https://picsum.photos/30" alt=""/>
-                <h2>User</h2>
+                <a href="#">
+                  <img src="https://picsum.photos/30" alt=""/>
+                  <h2>User</h2>
+                </a>
               </div>
             </li>
           </ul>
