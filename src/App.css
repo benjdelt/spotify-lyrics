@@ -1,8 +1,32 @@
-#col-1 {
-  background: tomato;
+html, body, #root {
+  height: 100%;
+  color: #b3b3b3;
+  font-family: Montserrat, sans-serif;
 }
 
-#col-2 {
-  background: deepskyblue;;
+header {
+  background: #121212;
+}
+
+/* Mobile Layout */
+
+@media (max-width: 575.98px) {
+  header {
+    height: 15%;
+    align-self: flex-end;
+  }
+  main {
+    height: 85%;
+  }
+}
+
+#logo {
+  color: #fff;
+  margin: 15px;
+  font-weight: 600;
+}
+
+main {
+  background: #212121;
 }
 
