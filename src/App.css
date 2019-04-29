@@ -7,11 +7,12 @@ html, body, #root {
   background: #212121;
 }
 
-a {
+a, .btn-link {
   color: #fff;
+  font-size: 18px;
 }
 
-a:hover {
+a:hover, .btn-link:hover, .btn-link:focus {
   color: #fff;
   text-decoration: none;
 }
@@ -19,9 +20,6 @@ a:hover {
 /* Mobile Layout */
 
 @media (max-width: 575.98px) {
-  header {
-    align-self: flex-end;
-  }
   
   main {
     height: 70%;
@@ -33,79 +31,116 @@ a:hover {
 header {
   background: #121212;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+
 }
 
-.nav {
-  justify-content: space-between;
-  height: 90%;
-  margin: 15px;
+header .nav {
+  flex: 1;
+}
+
+header .nav i {
+  margin: 10px;
 }
 
 /* Responsive circle images */
 
-.image-cont {
+header .image-cont {
   float:left;
   position: relative;
-  width: 30%;
   padding-bottom : 30%;
 }
 
-#logo {
+header .logo {
   display: flex;
-  justify-content: center;
 }
 
-#logo img {
+header .logo img {
   margin-top: 30px;
   width: 50px;
   height: 50px;
 }
 
-#logo h2 {
-  margin: 20px;
+header .logo h2 {
+  margin-top: 30px;
+  margin-left: 20px;
   font-weight: 600;                                                                                                               
 }
 
-.user img {
+.dropdown-toggle {
+  white-space: normal;
+}
+
+.dropdown-menu.show {
+  background: #212121;
+  margin-left: 30px; 
+}
+
+.dropdown-menu.show a {
+  color: #fff;
+}
+
+.dropdown-menu.show a:hover {
+  background: #3e3e3e;
+}
+
+header .user img {
   margin: 5px;
   border-radius: 100%;
   width: 45px;
 }
 
-.user h5 {
+header .user h5 {
   margin: 15px 0;
 }
 
 @media (max-width: 1200px) {
-  #logo h2{
+  header .logo h2{
     display: none;
   }
 
-  .user h5{
+  header .nav-item span {
+    display: none;
+  }
+
+  header .user h5{
     display: none;
   }
 }
 
-@media (max-width: 1900px) {
-  .user h5{
+@media (max-width: 1500px) {
+  header .logo h2 {
+    margin-top: 20px;
+  }
+  header .user h5 {
     margin: 0;
   }
 }
 
 @media (max-width: 575.98px) {
-  .nav-item {
-    display: flex;
+
+  header, header .nav {
+    flex-direction: row !important;
+    min-height: 0;
+    justify-content: space-around;
+  } 
+
+  header .nav-item {
     margin: 15px 0;
+    max-width: 25%;
   }
-  #logo img {
-    margin-left: 35px;
+
+  header .nav-item i {
+    font-size: 34px;
   }
-  .carousel {
-    max-width: 200px;
+
+  header .logo img {
+    margin-top: 15px;
   }
-  .user h5{
-    display: block;
+
+  header .user img {
+    margin-top: 25px;
   }
 }
 
@@ -117,8 +152,6 @@ main {
   flex-direction: column;
   align-items: center;
 }
-
-
 
 main .header img {
   float: left;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Carousel } from 'react-bootstrap'
+import { Dropdown, Button } from 'react-bootstrap'
 
 function App() {
   return (
@@ -96,7 +96,7 @@ function App() {
         <header className="col-sm-2 order-sm-first">
           <ul className="nav flex-column">
             <li className="nav-item">
-              <a href="#" id="logo">
+              <a href="#" className="logo">
                 <div className="image-cont">
                   <img src="/images/inverted-logo.png" alt="logo" className="avatar img-responsive"/>
                 </div>
@@ -104,53 +104,30 @@ function App() {
               </a>
             </li>
             <li className="nav-item">
-              <Carousel>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="https://picsum.photos/200?random=1"
-                    alt="First cover"
-                  />
-                  <Carousel.Caption>
-                    <h3>First cover label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="https://picsum.photos/200?random=2"
-                    alt="Third cover"
-                  />
-
-                  <Carousel.Caption>
-                    <h3>Second cover label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="https://picsum.photos/200?random=3"
-                    alt="Third cover"
-                  />
-
-                  <Carousel.Caption>
-                    <h3>Third cover label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              </Carousel>
+              <Button variant="link">
+                <i className="fas fa-volume-up"></i><span> Currently Playing</span>
+              </Button>
             </li>
             <li className="nav-item">
-              <a href="#" className="user">
-                <div className="image-cont">
-                  <img src="https://picsum.photos/30" alt=""/>
-                </div>
-                <h5>Benjamin Deltenre</h5>
-              </a>
+              <Dropdown>
+                <Dropdown.Toggle variant="link" id="dropdown-basic">
+                  <i className="fas fa-history"></i><span> Recently Played </span>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Track 1</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Track 2</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
           </ul>
+          <a href="#" className="user">
+            <div className="image-cont">
+              <img src="https://picsum.photos/30" alt=""/>
+            </div>
+            <h5>Benjamin Deltenre</h5>
+          </a>
         </header>
       </div>
     </div>
