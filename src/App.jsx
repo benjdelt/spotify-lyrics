@@ -94,7 +94,7 @@ function App() {
           </div>
         </main>
         <header className="col-sm-2 order-sm-first">
-          <ul className="nav flex-column">
+          {/* <ul className="nav flex-column">
             <li className="nav-item">
               <a href="#" className="logo">
                 <div className="image-cont">
@@ -121,13 +121,14 @@ function App() {
                 </Dropdown.Menu>
               </Dropdown>
             </li>
-          </ul>
-          <a href="#" className="user">
+          </ul> */}
+          <Button variant="black" className="login">LOG IN</Button>
+          {/* <a href="#" className="user">
             <div className="image-cont">
               <img src="https://picsum.photos/30" alt=""/>
             </div>
             <h5>Benjamin Deltenre</h5>
-          </a>
+          </a> */}
         </header>
       </div>
     </div>

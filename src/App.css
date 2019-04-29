@@ -95,6 +95,22 @@ header .user h5 {
   margin: 15px 0;
 }
 
+header .login {
+  padding: 11px 44px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 500px;
+  font-weight: 600;
+  max-width: 182px;
+  margin-top: 25px;
+  align-self: center;
+}
+
+header .login:hover {
+  transform: scale(1.06);
+  color: #fff;
+}
+
 @media (max-width: 1200px) {
   header .logo h2{
     display: none;
@@ -141,6 +157,10 @@ header .user h5 {
 
   header .user img {
     margin-top: 25px;
+  }
+
+  header .login {
+    height: 60px;
   }
 }
 
