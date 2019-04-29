@@ -32,6 +32,8 @@ a:hover {
 
 header {
   background: #121212;
+  display: flex;
+  justify-content: center;
 }
 
 .nav {
@@ -73,7 +75,6 @@ header {
 
 .user h5 {
   margin: 15px 0;
-  white-space: nowrap;
 }
 
 @media (max-width: 1200px) {
@@ -81,11 +82,14 @@ header {
     display: none;
   }
 
-  .user img {
-    display: block;
-  }
   .user h5{
     display: none;
+  }
+}
+
+@media (max-width: 1900px) {
+  .user h5{
+    margin: 0;
   }
 }
 
@@ -93,6 +97,9 @@ header {
   .nav-item {
     display: flex;
     margin: 15px 0;
+  }
+  #logo img {
+    margin-left: 35px;
   }
   .carousel {
     max-width: 200px;
