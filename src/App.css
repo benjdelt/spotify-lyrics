@@ -4,6 +4,7 @@ html, body, #root {
   height: 100%;
   color: #b3b3b3;
   font-family: Montserrat, sans-serif;
+  background: #212121;
 }
 
 a {
@@ -15,9 +16,6 @@ a:hover {
   text-decoration: none;
 }
 
-header {
-  background: #121212;
-}
 
 /* Mobile Layout */
 
@@ -26,13 +24,17 @@ header {
     /* height: 30%; */
     align-self: flex-end;
   }
-
+  
   main {
     height: 70%;
   }
 }
 
 /* Header */
+
+header {
+  background: #121212;
+}
 
 .nav {
   display: flex;
@@ -41,13 +43,22 @@ header {
   margin: 15px;
 }
 
+/* Responsive circle images */
+
+.image-cont {
+  float:left;
+  position: relative;
+  width: 30%;
+  padding-bottom : 30%;
+}
+
 #logo {
   display: flex;
   justify-content: center;
 }
 
 #logo img {
-  margin: 30px;
+  margin-top: 30px;
   width: 50px;
   height: 50px;
 }
@@ -57,17 +68,20 @@ header {
   font-weight: 600;                                                                                                               
 }
 
+.user {
+  display: flex;
+}
 
 .user img {
   margin: 5px;
   border-radius: 100%;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  justify-self: center;
 }
 
-.user h6 {
-  display: inline;
-  margin: 5px;
+.user h5 {
+  margin: 15px 0;
+  white-space: nowrap;
 }
 
 @media (max-width: 1200px) {
@@ -75,7 +89,10 @@ header {
     display: none;
   }
 
-  .user h6{
+  .user img {
+    display: block;
+  }
+  .user h5{
     display: none;
   }
 }
@@ -89,10 +106,13 @@ header {
   .carousel {
     max-width: 200px;
   }
+  .user h5{
+    display: block;
+  }
 }
 
 /* Main */
 
 main {
-  background: #212121;
+  /* background: #212121; */
 }

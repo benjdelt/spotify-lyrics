@@ -13,7 +13,9 @@ function App() {
           <ul className="nav flex-column">
             <li className="nav-item">
               <a href="#" id="logo">
-                <img src="/images/inverted-logo.png" alt="logo"/>
+                <div className="image-cont">
+                  <img src="/images/inverted-logo.png" alt="logo" class="avatar img-responsive"/>
+                </div>
                 <h2>Spotify Lyrics</h2>
               </a>
             </li>
@@ -57,12 +59,12 @@ function App() {
               </Carousel>
             </li>
             <li className="nav-item">
-              <div className="user">
-                <a href="#">
+              <a href="#" className="user">
+                <div className="image-cont">
                   <img src="https://picsum.photos/30" alt=""/>
-                  <h6>Benjamin Deltenre</h6>
-                </a>
-              </div>
+                </div>
+                <h5>Benjamin Deltenre</h5>
+              </a>
             </li>
           </ul>
         </header>
