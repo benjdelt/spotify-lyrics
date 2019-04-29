@@ -9,9 +9,11 @@ function App() {
         <main className="col-sm-10">
           <div className="header">
             <img src="https://picsum.photos/200?random=5" alt="cover"/>
-            <h3>Track Title</h3>
-            <h5>Artist</h5>
-            <p>Album</p>
+            <div className="info">
+              <h3>Track Title</h3>
+              <h5>Artist</h5>
+              <p>Album</p>
+            </div>
           </div>
           <div className="lyrics">
             <p>
