@@ -20,9 +20,6 @@ a:hover, .btn-link:hover, .btn-link:focus {
 /* Mobile Layout */
 
 @media (max-width: 575.98px) {
-  header {
-    align-self: flex-end;
-  }
   
   main {
     height: 70%;
@@ -69,6 +66,10 @@ header .logo h2 {
   margin-top: 30px;
   margin-left: 20px;
   font-weight: 600;                                                                                                               
+}
+
+.dropdown-toggle {
+  white-space: normal;
 }
 
 .dropdown-menu.show {
@@ -118,21 +119,28 @@ header .user h5 {
 }
 
 @media (max-width: 575.98px) {
+
+  header, header .nav {
+    flex-direction: row !important;
+    min-height: 0;
+    justify-content: space-around;
+  } 
+
   header .nav-item {
-    display: flex;
     margin: 15px 0;
+    max-width: 25%;
+  }
+
+  header .nav-item i {
+    font-size: 34px;
   }
 
   header .logo img {
-    margin-left: 35px;
+    margin-top: 15px;
   }
 
-  /* .carousel {
-    max-width: 200px;
-  } */
-
-  header .user h5{
-    display: block;
+  header .user img {
+    margin-top: 25px;
   }
 }
 

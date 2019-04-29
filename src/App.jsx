@@ -109,57 +109,18 @@ function App() {
               </Button>
             </li>
             <li className="nav-item">
-                <Dropdown>
-                  <Dropdown.Toggle variant="link" id="dropdown-basic">
-                    <i className="fas fa-history"></i><span> Recently Played </span>
-                  </Dropdown.Toggle>
+              <Dropdown>
+                <Dropdown.Toggle variant="link" id="dropdown-basic">
+                  <i className="fas fa-history"></i><span> Recently Played </span>
+                </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Track 1</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Track 2</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              {/* <Carousel>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="https://picsum.photos/200?random=1"
-                    alt="First cover"
-                  />
-                  <Carousel.Caption>
-                    <h3>First cover label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="https://picsum.photos/200?random=2"
-                    alt="Third cover"
-                  />
-
-                  <Carousel.Caption>
-                    <h3>Second cover label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="https://picsum.photos/200?random=3"
-                    alt="Third cover"
-                  />
-
-                  <Carousel.Caption>
-                    <h3>Third cover label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              </Carousel> */}
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Track 1</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Track 2</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
-            {/* <li className="nav-item">
-            </li> */}
           </ul>
           <a href="#" className="user">
             <div className="image-cont">
