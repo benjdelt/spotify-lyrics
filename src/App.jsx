@@ -98,7 +98,7 @@ function App() {
             <li className="nav-item">
               <a href="#" id="logo">
                 <div className="image-cont">
-                  <img src="/images/inverted-logo.png" alt="logo" class="avatar img-responsive"/>
+                  <img src="/images/inverted-logo.png" alt="logo" className="avatar img-responsive"/>
                 </div>
                 <h2>Spotify Lyrics</h2>
               </a>
