@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 
 const client_id = process.env.CLIENT_ID; // Your client id
 const client_secret = process.env.CLIENT_SECRET; // Your secret
-const redirect_uri = process.env.REDIRECT_URI; // Or Your redirect uri
+const redirect_uri = process.env.BASE_URL + 'callback'; // Or Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -100,7 +100,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('http://localhost:3000/#' +
+        res.redirect(`${process.env.BASE_URL_CLIENT}#` +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
