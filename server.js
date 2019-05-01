@@ -32,7 +32,7 @@ const stateKey = 'spotify_auth_state';
 const app = express();
 app.use(favicon(__dirname + '/build/favicon.ico'));
 
-app.use(express.static(__dirname + 'build'))
+app.use(express.static(__dirname + 'src'))
    .use(cookieParser());
 
 app.get('/login', function(req, res) {
@@ -139,7 +139,7 @@ app.get('/refresh_token', function(req, res) {
 });
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
 
 console.log(`Listening on ${port}`);
