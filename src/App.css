@@ -33,7 +33,7 @@ header {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
+  overflow: hidden;
 }
 
 header .nav {
@@ -93,6 +93,22 @@ header .user img {
 
 header .user h5 {
   margin: 15px 0;
+}
+
+header .login {
+  padding: 11px 44px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 500px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  align-self: center;
+  font-variant: small-caps;
+}
+
+header .login:hover {
+  transform: scale(1.06);
+  color: #fff;
 }
 
 @media (max-width: 1200px) {
