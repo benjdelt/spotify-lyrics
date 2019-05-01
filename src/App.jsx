@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Dropdown, Button } from 'react-bootstrap'
+import { Dropdown, Button } from 'react-bootstrap';
+
+import Login from './components/Login';
 
 function App() {
   return (
@@ -94,7 +96,7 @@ function App() {
           </div>
         </main>
         <header className="col-sm-2 order-sm-first">
-          {/* <ul className="nav flex-column">
+          <ul className="nav flex-column">
             <li className="nav-item">
               <a href="#" className="logo">
                 <div className="image-cont">
@@ -103,7 +105,7 @@ function App() {
                 <h2>Spotify Lyrics</h2>
               </a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Button variant="link">
                 <i className="fas fa-volume-up"></i><span> Currently Playing</span>
               </Button>
@@ -120,9 +122,9 @@ function App() {
                   <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            </li>
-          </ul> */}
-          <Button variant="black" className="login">LOG IN</Button>
+            </li> */}
+          </ul>
+          <Login />
           {/* <a href="#" className="user">
             <div className="image-cont">
               <img src="https://picsum.photos/30" alt=""/>
