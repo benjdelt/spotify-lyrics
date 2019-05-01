@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Dropdown, Button } from 'react-bootstrap';
+import { Button, Dropdown } from 'react-bootstrap'; 
+import SpotifyWebApi from 'spotify-web-api-js';
 
 import Login from './components/Login';
+
+const spotifyApi = new SpotifyWebApi();
 
 class App extends Component { 
   
   constructor(){
     super();
     const params = this.getHashParams();
-    console.log(params);
+    const token = params.access_token;
+    if (token) {
+      spotifyApi.setAccessToken(token);
+    }
+    this.state = {
+      loggedIn: token ? true : false,
+      nowPlaying: { name: 'Not Checked', albumArt: '' }
+    }
   }
   getHashParams() {
     var hashParams = {};
@@ -22,6 +32,22 @@ class App extends Component {
     }
     return hashParams;
   }
+
+  getNowPlaying(){
+    spotifyApi.getMyCurrentPlaybackState()
+      .then((response) => {
+        this.setState({
+          nowPlaying: { 
+              name: response.item.name, 
+              albumArt: response.item.album.images[0].url
+            }
+        });
+      })
+  }
+
+  componentDidMount() {
+    this.getNowPlaying();
+  }
   
   render() {
     return(
@@ -29,9 +55,9 @@ class App extends Component {
         <div className="row h-100">
           <main className="col-sm-10">
             <div className="header">
-              <img src="https://picsum.photos/200?random=5" alt="cover"/>
+              <img src={this.state.nowPlaying.albumArt} alt="cover"/>
               <div className="info">
-                <h3>Track Title</h3>
+                <h3>{this.state.nowPlaying.name}</h3>
                 <h5>Artist</h5>
                 <p>Album</p>
               </div>
@@ -124,32 +150,39 @@ class App extends Component {
                   <h2>Spotify Lyrics</h2>
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <Button variant="link">
-                  <i className="fas fa-volume-up"></i><span> Currently Playing</span>
-                </Button>
-              </li>
-              <li className="nav-item">
-                <Dropdown>
-                  <Dropdown.Toggle variant="link" id="dropdown-basic">
-                    <i className="fas fa-history"></i><span> Recently Played </span>
-                  </Dropdown.Toggle>
+              {this.state.loggedIn && (
+                <div>
+                  <li className="nav-item">
+                    <Button variant="link">
+                      <i className="fas fa-volume-up"></i><span> Currently Playing</span>
+                    </Button>
+                  </li>
+                  <li className="nav-item">
+                    <Dropdown>
+                      <Dropdown.Toggle variant="link" id="dropdown-basic">
+                        <i className="fas fa-history"></i><span> Recently Played </span>
+                      </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Track 1</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Track 2</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </li> */}
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Track 1</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Track 2</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </li>
+                </div>   
+              )}
             </ul>
-            <Login />
-            {/* <a href="#" className="user">
-              <div className="image-cont">
-                <img src="https://picsum.photos/30" alt=""/>
-              </div>
-              <h5>Benjamin Deltenre</h5>
-            </a> */}
+            {this.state.loggedIn ? (
+                <a href="#" className="user">
+                  <div className="image-cont">
+                    <img src="https://picsum.photos/30" alt=""/>
+                  </div>
+                  <h5>Benjamin Deltenre</h5>
+                </a>
+              ):(
+                <Login />
+            )}
           </header>
         </div>
       </div>
