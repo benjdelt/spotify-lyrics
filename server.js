@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express'); // Express web server framework
+const favicon = require('express-favicon');
 const port = process.env.PORT || 8888;
 const request = require('request'); // "Request" library
 const querystring = require('querystring');
@@ -28,6 +29,7 @@ const generateRandomString = function(length) {
 const stateKey = 'spotify_auth_state';
 
 const app = express();
+app.use(favicon(__dirname + '/build/favicon.ico'));
 
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
