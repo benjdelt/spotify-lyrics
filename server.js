@@ -31,7 +31,7 @@ const stateKey = 'spotify_auth_state';
 const app = express();
 app.use(favicon(__dirname + '/build/favicon.ico'));
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + 'build'))
    .use(cookieParser());
 
 app.get('/login', function(req, res) {
