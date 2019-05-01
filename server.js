@@ -1,26 +1,20 @@
 require('dotenv').config()
 
-const express = require('express');
-const favicon = require('express-favicon');
-const path = require('path');
-const cors = require('cors');
-const request = require('request');
+const express = require('express'); // Express web server framework
+const port = process.env.PORT || 8888;
+const request = require('request'); // "Request" library
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
-const port = process.env.PORT || 8888;
 
-const app = express();
-app.use(favicon(__dirname + '/build/favicon.ico'));
+const client_id = process.env.CLIENT_ID; // Your client id
+const client_secret = process.env.CLIENT_SECRET; // Your secret
+const redirect_uri = 'http://localhost:8888/callback'; // Or Your redirect uri
 
-// Spotify
-
-const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
-const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET; 
-const spotifyRedirectUri = process.env.SPOTIFY_REDIRECT_URI;
-
-const stateKey = 'spotify_auth_state';
-
-
+/**
+ * Generates a random string containing numbers and letters
+ * @param  {number} length The length of the string
+ * @return {string} The generated string
+ */
 const generateRandomString = function(length) {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -31,42 +25,35 @@ const generateRandomString = function(length) {
   return text;
 };
 
-// the __dirname is the current directory from where the script is running
+const stateKey = 'spotify_auth_state';
 
-app.use(express.static(path.join(__dirname, 'src')));
-app.use(cors());
-app.use(express.static(__dirname));
-app.use(cookieParser());
+const app = express();
 
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  next();
-});
-
-app.get('/ping', function (req, res) {
- return res.send('pong');
-});
+app.use(express.static(__dirname + '/public'))
+   .use(cookieParser());
 
 app.get('/login', function(req, res) {
+
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope = 'user-read-currently-playing user-read-recently-played';
+  // your application requests authorization
+  const scope = 'user-read-private user-read-email user-read-playback-state';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
-      client_id: spotifyClientId,
+      client_id: client_id,
       scope: scope,
-      redirect_uri: spotifyRedirectUri,
+      redirect_uri: redirect_uri,
       state: state
-    })
-  );
-  
-})
+    }));
+});
 
-app.get('/me', function(req, res) {
+app.get('/callback', function(req, res) {
+
+  // your application requests refresh and access tokens
+  // after checking the state parameter
+
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -82,11 +69,11 @@ app.get('/me', function(req, res) {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
-        redirect_uri: spotifyRedirectUri,
+        redirect_uri: redirect_uri,
         grant_type: 'authorization_code'
       },
       headers: {
-        'Authorization': 'Basic ' + (new Buffer(spotifyClientId + ':' + spotifyClientSecret).toString('base64'))
+        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
       },
       json: true
     };
@@ -109,7 +96,7 @@ app.get('/me', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect('http://localhost:3000/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -130,9 +117,7 @@ app.get('/refresh_token', function(req, res) {
   const refresh_token = req.query.refresh_token;
   const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 
-      'Authorization': 'Basic ' + (new Buffer(spotifyClientId + ':' + spotifyClientSecret).toString('base64')) 
-    },
+    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
@@ -150,9 +135,5 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-console.log(`Listening on Port ${port}`);
+console.log(`Listening on ${port}`);
 app.listen(port);

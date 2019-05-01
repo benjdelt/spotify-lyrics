@@ -101,9 +101,9 @@ header .login {
   border: 2px solid #fff;
   border-radius: 500px;
   font-weight: 600;
-  max-width: 182px;
   margin-bottom: 25px;
   align-self: center;
+  font-variant: small-caps;
 }
 
 header .login:hover {
@@ -157,10 +157,6 @@ header .login:hover {
 
   header .user img {
     margin-top: 25px;
-  }
-
-  header .login {
-    height: 60px;
   }
 }
 
