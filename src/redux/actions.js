@@ -1,7 +1,8 @@
 import { 
   GET_LOGGED_IN, 
   FETCH_USER,
-  FETCH_NOW_PLAYING 
+  FETCH_NOW_PLAYING,
+  FETCH_RECENTLY_PLAYED
 } from './types';
 import SpotifyWebApi from 'spotify-web-api-js';
 
@@ -60,5 +61,23 @@ export const fetchNowPlaying = () => dispatch => {
         type: FETCH_NOW_PLAYING,
         payload: nowPlaying
       });
+    })
+}
+
+export const fetchRecentlyPlayed = () => dispatch => {
+  spotifyApi.getMyRecentlyPlayedTracks({"limit": 5})
+    .then((response) => {
+      const recentlyPlayed = response.items.map(item => {
+        return {
+          name: item.track.name,
+          artist: item.track.artists[0].name,
+          album: item.track.album.name,
+          albumArt: item.track.album.images[0].url
+        }
+      })
+      dispatch({
+        type: FETCH_RECENTLY_PLAYED,
+        payload: recentlyPlayed
+      })
     })
 }

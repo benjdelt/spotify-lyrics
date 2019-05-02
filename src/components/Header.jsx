@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Dropdown } from 'react-bootstrap'; 
 
-import { getLoggedIn, fetchUser } from '../redux/actions';
+import { 
+  getLoggedIn,
+  fetchUser,
+  fetchRecentlyPlayed
+} from '../redux/actions';
 
 import Login from './Login';
 
@@ -12,6 +16,7 @@ class Header extends Component {
   componentDidMount() {
     this.props.getLoggedIn();
     this.props.fetchUser();
+    this.props.fetchRecentlyPlayed();
   }
 
   render() {
@@ -40,9 +45,11 @@ class Header extends Component {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Track 1</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Track 2</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Track 3</Dropdown.Item>
+                    {this.props.recentlyPlayed.map(track => {
+                      return (
+                        <Dropdown.Item href="#/action-1">{track.name}</Dropdown.Item>
+                      )
+                    })}
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
@@ -66,7 +73,12 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
-  user: state.user
+  user: state.user,
+  recentlyPlayed: state.recentlyPlayed
 })
 
-export default connect(mapStateToProps, { getLoggedIn, fetchUser })(Header);
+export default connect(mapStateToProps, { 
+  getLoggedIn,
+  fetchUser,
+  fetchRecentlyPlayed
+})(Header);
