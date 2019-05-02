@@ -13,14 +13,16 @@ export const initialState = {
     name: '',
     artist: '',
     album: '',
-    albumArt: ''
+    albumArt: '',
+    lyrics: []
   },
   recentlyPlayed: [],
   selectedTrack: {
     name: '',
     artist: '',
     album: '',
-    albumArt: ''
+    albumArt: '',
+    lyrics: []
   },
 };
 
