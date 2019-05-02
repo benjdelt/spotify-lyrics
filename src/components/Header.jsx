@@ -4,19 +4,17 @@ import { Button, Dropdown } from 'react-bootstrap';
 
 import { 
   getLoggedIn,
-  fetchUser,
   fetchRecentlyPlayed,
   selectTrack
 } from '../redux/actions';
 
-import Login from './Login';
+import User from './User';
 
 
 class Header extends Component {
 
   componentDidMount() {
     this.props.getLoggedIn();
-    this.props.fetchUser();
     this.props.fetchRecentlyPlayed();
   }
 
@@ -67,22 +65,7 @@ class Header extends Component {
             </div>   
           )}
         </ul>
-        {this.props.loggedIn ? (
-          <Dropdown className="user">
-            <Dropdown.Toggle variant="link">
-              <div className="image-cont">
-                <img src={this.props.user.avatar} alt="avatar"/>
-              </div>
-              <h6>{this.props.user.name}</h6>
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item href="/" >Logout</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        ):(
-          <Login />
-        )}
+        <User />
       </header>
     )
   }
@@ -97,7 +80,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
   getLoggedIn,
-  fetchUser,
   fetchRecentlyPlayed,
   selectTrack
 })(Header);
