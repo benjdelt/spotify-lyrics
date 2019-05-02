@@ -49,7 +49,7 @@ class Header extends Component {
               </li>
               <li className="nav-item">
                 <Dropdown>
-                  <Dropdown.Toggle variant="link" id="dropdown-basic">
+                  <Dropdown.Toggle variant="link">
                     <i className="fas fa-history"></i><span> Recently Played </span>
                   </Dropdown.Toggle>
 
@@ -68,14 +68,20 @@ class Header extends Component {
           )}
         </ul>
         {this.props.loggedIn ? (
-            <a href="#" className="user">
+          <Dropdown className="user">
+            <Dropdown.Toggle variant="link">
               <div className="image-cont">
-                <img src={this.props.user.avatar} alt=""/>
+                <img src={this.props.user.avatar} alt="avatar"/>
               </div>
-              <h5>{this.props.user.name}</h5>
-            </a>
-          ):(
-            <Login />
+              <h6>{this.props.user.name}</h6>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="/" >Logout</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        ):(
+          <Login />
         )}
       </header>
     )
