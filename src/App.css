@@ -172,6 +172,7 @@ main {
 main .header img {
   float: left;
   margin: 45px 45px 45px -45px;
+  width: 200px;
 }
 
 main .header .info {
