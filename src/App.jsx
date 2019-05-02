@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reduxLogger from 'redux-logger';
@@ -19,20 +19,18 @@ const store = createStore(
 );
 
 
-class App extends Component {
+function App() {
   
-  render() {
-    return(
-      <Provider store={store}>
-        <div className="container-fluid h-100">
-          <div className="row h-100">
-            <Main />
-            <Header />
-          </div>
+  return(
+    <Provider store={store}>
+      <div className="container-fluid h-100">
+        <div className="row h-100">
+          <Main />
+          <Header />
         </div>
-      </Provider>
-    );
-  };
+      </div>
+    </Provider>
+  );
 }
 
 export default App;
