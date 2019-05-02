@@ -188,6 +188,17 @@ main .header .info {
   margin-top: 45px; 
 }
 
+main .disclaimer {
+  width: 35%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+main .disclaimer h3 {
+  align-self: center;
+}
+
 @media (max-width: 575.98px) {
   main .header img {
     margin: 45px 45px 45px 45px;
@@ -195,5 +206,7 @@ main .header .info {
   main .header .info {
     float: left;
   }
-  
+  main .disclaimer {
+    width: 90%;
+  }
 }
