@@ -2,7 +2,8 @@ import {
   GET_LOGGED_IN, 
   FETCH_USER,
   FETCH_NOW_PLAYING,
-  FETCH_RECENTLY_PLAYED
+  FETCH_RECENTLY_PLAYED,
+  SELECT_TRACK
 } from './types';
 import SpotifyWebApi from 'spotify-web-api-js';
 
@@ -80,4 +81,22 @@ export const fetchRecentlyPlayed = () => dispatch => {
         payload: recentlyPlayed
       })
     })
+}
+
+export const selectTrack = track => async (dispatch) => {
+  if (!track) {
+    track = await spotifyApi.getMyCurrentPlaybackState()
+      .then((response) => {
+        return { 
+          name: response.item.name,
+          artist: response.item.artists[0].name,
+          album: response.item.album.name, 
+          albumArt: response.item.album.images[0].url
+        }
+      })
+  }
+  dispatch({
+    type: SELECT_TRACK,
+    payload: track
+  })
 }
