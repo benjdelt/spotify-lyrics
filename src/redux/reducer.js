@@ -2,7 +2,8 @@ import {
   GET_LOGGED_IN,
   FETCH_USER,
   FETCH_NOW_PLAYING,
-  FETCH_RECENTLY_PLAYED
+  FETCH_RECENTLY_PLAYED,
+  SELECT_TRACK
 } from './types';
 
 export const initialState = {
@@ -14,7 +15,13 @@ export const initialState = {
     album: '',
     albumArt: ''
   },
-  recentlyPlayed: []
+  recentlyPlayed: [],
+  selectedTrack: {
+    name: '',
+    artist: '',
+    album: '',
+    albumArt: ''
+  },
 };
 
 export function reducer(state = initialState, action) {
@@ -38,6 +45,11 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         recentlyPlayed: action.payload
+      }
+    case SELECT_TRACK:
+      return {
+        ...state,
+        selectedTrack: action.payload
       }
     default:
       return state;

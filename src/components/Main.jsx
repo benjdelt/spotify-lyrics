@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchNowPlaying } from '../redux/actions';
-// import SpotifyWebApi from 'spotify-web-api-js';
-
-// const spotifyApi = new SpotifyWebApi();
+import { fetchNowPlaying, selectTrack } from '../redux/actions';
 
 class Main extends Component {
 
   componentDidMount() {
-    this.props.fetchNowPlaying();
+    this.props.fetchNowPlaying();    
+    this.props.selectTrack();
   }
 
   render() {
     return (
       <main className="col-sm-10">
         <div className="header">
-          <img src={this.props.nowPlaying.albumArt} alt="cover"/>
+          <img src={this.props.selectedTrack.albumArt} alt="cover"/>
           <div className="info">
-            <h3>{this.props.nowPlaying.name}</h3>
+            <h3>{this.props.selectedTrack.name}</h3>
             <h5>
-              {this.props.nowPlaying.artist}
+              {this.props.selectedTrack.artist}
             </h5>
-            <p>{this.props.nowPlaying.album}</p>
+            <p>{this.props.selectedTrack.album}</p>
           </div>
         </div>
         <div className="lyrics">
@@ -107,7 +105,8 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  nowPlaying: state.nowPlaying
+  nowPlaying: state.nowPlaying,
+  selectedTrack: state.selectedTrack
 });
 
-export default connect(mapStateToProps, { fetchNowPlaying })(Main);
+export default connect(mapStateToProps, { fetchNowPlaying, selectTrack })(Main);
