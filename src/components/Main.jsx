@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchNowPlaying } from '../redux/actions';
-import SpotifyWebApi from 'spotify-web-api-js';
+// import SpotifyWebApi from 'spotify-web-api-js';
 
-const spotifyApi = new SpotifyWebApi();
+// const spotifyApi = new SpotifyWebApi();
 
 class Main extends Component {
 

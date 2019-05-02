@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Dropdown } from 'react-bootstrap'; 
 
-import { getLoggedIn } from '../redux/actions';
+import { getLoggedIn, fetchUser } from '../redux/actions';
 
 import Login from './Login';
 
@@ -11,6 +11,7 @@ class Header extends Component {
 
   componentDidMount() {
     this.props.getLoggedIn();
+    this.props.fetchUser();
   }
 
   render() {
@@ -51,9 +52,9 @@ class Header extends Component {
         {this.props.loggedIn ? (
             <a href="#" className="user">
               <div className="image-cont">
-                <img src="https://picsum.photos/30" alt=""/>
+                <img src={this.props.user.avatar} alt=""/>
               </div>
-              <h5>Benjamin Deltenre</h5>
+              <h5>{this.props.user.name}</h5>
             </a>
           ):(
             <Login />
@@ -64,7 +65,8 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.loggedIn
+  loggedIn: state.loggedIn,
+  user: state.user
 })
 
-export default connect(mapStateToProps, { getLoggedIn })(Header);
+export default connect(mapStateToProps, { getLoggedIn, fetchUser })(Header);

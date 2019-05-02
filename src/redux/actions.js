@@ -1,4 +1,8 @@
-import { GET_LOGGED_IN, FETCH_NOW_PLAYING } from './types';
+import { 
+  GET_LOGGED_IN, 
+  FETCH_USER,
+  FETCH_NOW_PLAYING 
+} from './types';
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
@@ -29,10 +33,23 @@ export const getLoggedIn = () => dispatch => {
   })
 }
 
+export const fetchUser = () => dispatch => {
+  spotifyApi.getMe()
+    .then((response) => {
+      const user = {
+        name: response.display_name,
+        avatar: response.images[0].url
+      }
+      dispatch({
+        type: FETCH_USER,
+        payload: user
+      })
+    }) 
+}
+
 export const fetchNowPlaying = () => dispatch => {
   spotifyApi.getMyCurrentPlaybackState()
     .then((response) => {
-      console.log(response);
       const nowPlaying = { 
         name: response.item.name,
         artist: response.item.artists[0].name,
