@@ -1,19 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { Button, Dropdown } from 'react-bootstrap'
 
-import { 
-  getLoggedIn,
-  fetchUser,
-} from '../redux/actions';
 
 function User(props) {
   
-  useEffect(() => {
-    props.fetchUser();
-  }, [])  
-
   return (
     <Fragment>
       {props.loggedIn ? (
@@ -48,7 +40,4 @@ const mapStateToProps = state => ({
   user: state.user,
 })
 
-export default connect(mapStateToProps, { 
-  getLoggedIn,
-  fetchUser,
-})(User);
+export default connect(mapStateToProps)(User);
