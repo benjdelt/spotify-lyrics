@@ -35,7 +35,7 @@ function Navigation(props) {
             </Button>
           </li>
           <li className="nav-item">
-            <Dropdown>
+            <Dropdown >
               <Dropdown.Toggle variant="link">
                 <i className="fas fa-history"></i><span> Recently Played </span>
               </Dropdown.Toggle>
