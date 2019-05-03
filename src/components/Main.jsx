@@ -12,26 +12,32 @@ function Main(props) {
   return (
     <main className="col-sm-10">
       {props.loggedIn ? (
-        <Fragment>
-          <div className="header">
-            <img src={props.selectedTrack.albumArt} alt="cover"/>
-            <div className="info">
-              <h3>{props.selectedTrack.name}</h3>
-              <h5>
-                {props.selectedTrack.artist}
-              </h5>
-              <p>{props.selectedTrack.album}</p>
+        props.selectedTrack ? (
+          <Fragment>
+            <div className="header">
+              <img src={props.selectedTrack.albumArt} alt="cover"/>
+              <div className="info">
+                <h3>{props.selectedTrack.name}</h3>
+                <h5>
+                  {props.selectedTrack.artist}
+                </h5>
+                <p>{props.selectedTrack.album}</p>
+              </div>
             </div>
+            <div className="lyrics">
+              
+              <p>{props.selectedTrack.lyrics.map((line, index) =>{
+                return (
+                  <span key={index}>{line}<br /></span>
+                )
+              } )}</p>
+            </div>
+          </Fragment>
+        ) : (
+          <div className="disclaimer">
+            <h3>No track is currently playing on this Spotify account</h3>
           </div>
-          <div className="lyrics">
-            
-            <p>{props.selectedTrack.lyrics.map((line, index) =>{
-              return (
-                <span key={index}>{line}<br /></span>
-              )
-            } )}</p>
-          </div>
-        </Fragment>
+        )
       ):(
         <div className="disclaimer">
           <h3>Please log in to continue</h3>
