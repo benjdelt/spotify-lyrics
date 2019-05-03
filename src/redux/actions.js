@@ -1,3 +1,7 @@
+
+
+import axios from 'axios';
+
 import { 
   GET_LOGGED_IN, 
   FETCH_USER,
@@ -6,6 +10,8 @@ import {
   SELECT_TRACK
 } from './types';
 import SpotifyWebApi from 'spotify-web-api-js';
+
+require('dotenv').config()
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -26,6 +32,17 @@ const token = params.access_token;
 if (token) {
   spotifyApi.setAccessToken(token);
 }
+
+async function getLyrics(artist, title) {
+  const response = await axios.get(`${process.env.REACT_APP_BASE_URL}lyrics`, {
+    params: {
+      artist: artist,
+      title: title
+    }
+  })
+  return response.data.split('\n');
+}
+
 
 export const getLoggedIn = () => dispatch => {
   const loggedIn = token ? true : false;
@@ -51,12 +68,14 @@ export const fetchUser = () => dispatch => {
 
 export const fetchNowPlaying = () => dispatch => {
   spotifyApi.getMyCurrentPlaybackState()
-    .then((response) => {
+    .then(async (response) => {
+      const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
       const nowPlaying = { 
         name: response.item.name,
         artist: response.item.artists[0].name,
         album: response.item.album.name, 
-        albumArt: response.item.album.images[0].url
+        albumArt: response.item.album.images[0].url,
+        lyrics: lyrics
       }
       dispatch({
         type: FETCH_NOW_PLAYING,
@@ -67,7 +86,7 @@ export const fetchNowPlaying = () => dispatch => {
 
 export const fetchRecentlyPlayed = () => dispatch => {
   spotifyApi.getMyRecentlyPlayedTracks({"limit": 5})
-    .then((response) => {
+    .then(async (response) => {
       const recentlyPlayed = response.items.map(item => {
         return {
           name: item.track.name,
@@ -86,15 +105,18 @@ export const fetchRecentlyPlayed = () => dispatch => {
 export const selectTrack = track => async (dispatch) => {
   if (!track) {
     track = await spotifyApi.getMyCurrentPlaybackState()
-      .then((response) => {
+      .then(async (response) => {
+        const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
         return { 
           name: response.item.name,
           artist: response.item.artists[0].name,
           album: response.item.album.name, 
-          albumArt: response.item.album.images[0].url
+          albumArt: response.item.album.images[0].url,
+          lyrics: lyrics
         }
       })
   }
+  track.lyrics = await getLyrics(track.artist, track.name);
   dispatch({
     type: SELECT_TRACK,
     payload: track

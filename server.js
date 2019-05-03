@@ -7,6 +7,9 @@ const port = process.env.PORT || 8888;
 const request = require('request'); // "Request" library
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const axios = require('axios');
 
 const client_id = process.env.CLIENT_ID; // Your client id
 const client_secret = process.env.CLIENT_SECRET; // Your secret
@@ -34,6 +37,7 @@ app.use(favicon(__dirname + '/build/favicon.ico'));
 
 app.use(express.static(path.join(__dirname, 'build')));
 
+app.use(cors());
 app.use(cookieParser());
 
 app.get('/login', function(req, res) {
@@ -138,6 +142,11 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
+
+app.get('/lyrics', function(req, res) {
+  axios.get(`https://orion.apiseeds.com/api/music/lyric/${req.query.artist}/${req.query.title}?apikey=${process.env.API_SEEDS_KEY}`)
+    .then(response => res.send(response.data.result.track.text));
+})
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
