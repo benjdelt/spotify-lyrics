@@ -34,7 +34,7 @@ if (token) {
 }
 
 async function getLyrics(artist, title) {
-  const response = await axios.get('http://localhost:8888/lyrics', {
+  const response = await axios.get(`${process.env.REACT_APP_BASE_URL}lyrics`, {
     params: {
       artist: artist,
       title: title
