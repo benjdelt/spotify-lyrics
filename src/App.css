@@ -185,6 +185,7 @@ main .header img {
 main .header .info {
   float: right;
   margin-top: 45px; 
+  max-width: 85%;
 }
 
 main .disclaimer {

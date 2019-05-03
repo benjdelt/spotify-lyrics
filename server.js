@@ -144,8 +144,16 @@ app.get('/refresh_token', function(req, res) {
 });
 
 app.get('/lyrics', function(req, res) {
-  axios.get(`https://orion.apiseeds.com/api/music/lyric/${req.query.artist}/${req.query.title}?apikey=${process.env.API_SEEDS_KEY}`)
-    .then(response => res.send(response.data.result.track.text));
+  const parentheses = /\s+(\(.*?\))/g; // Grab parentheses that don't start the string
+  const title = req.query.title.replace(parentheses, '');
+  axios.get(`https://orion.apiseeds.com/api/music/lyric/${req.query.artist}/${title}?apikey=${process.env.API_SEEDS_KEY}`)
+    .then(response => {
+      res.send(response.data.result.track.text)
+    })
+    .catch(error => {
+      console.error(error);
+      res.send("error")
+    })
 })
 
 app.get('/*', function (req, res) {
