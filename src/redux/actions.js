@@ -70,7 +70,6 @@ export const fetchNowPlaying = () => dispatch => {
   spotifyApi.getMyCurrentPlaybackState()
     .then(async (response) => {
       const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
-      console.log(lyrics);
       const nowPlaying = { 
         name: response.item.name,
         artist: response.item.artists[0].name,
@@ -87,7 +86,7 @@ export const fetchNowPlaying = () => dispatch => {
 
 export const fetchRecentlyPlayed = () => dispatch => {
   spotifyApi.getMyRecentlyPlayedTracks({"limit": 5})
-    .then((response) => {
+    .then(async (response) => {
       const recentlyPlayed = response.items.map(item => {
         return {
           name: item.track.name,
@@ -117,6 +116,7 @@ export const selectTrack = track => async (dispatch) => {
         }
       })
   }
+  track.lyrics = await getLyrics(track.artist, track.name);
   dispatch({
     type: SELECT_TRACK,
     payload: track
