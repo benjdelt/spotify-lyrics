@@ -40,6 +40,9 @@ async function getLyrics(artist, title) {
       title: title
     }
   })
+  if (response.data === "error") {
+    return ["Couldn't find lyrics for this track"];
+  }
   return response.data.split('\n');
 }
 
