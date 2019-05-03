@@ -46,6 +46,31 @@ async function getLyrics(artist, title) {
   return response.data.split('\n');
 }
 
+async function getNowPlaying() {
+  let nowPlaying = { 
+    name: '',
+    artist: '',
+    album: '',
+    albumArt: '',
+    lyrics: ''
+  }
+  nowPlaying = await spotifyApi.getMyCurrentPlaybackState()
+    .then(async (response) => {
+      console.log("response:", response)
+      if (response && response.item) {
+        const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
+        return { 
+          name: response.item.name,
+          artist: response.item.artists[0].name,
+          album: response.item.album.name, 
+          albumArt: response.item.album.images[0].url,
+          lyrics: lyrics
+        }
+      }
+    })
+  return nowPlaying;
+}
+
 
 export const getLoggedIn = () => dispatch => {
   const loggedIn = token ? true : false;
@@ -69,22 +94,12 @@ export const fetchUser = () => dispatch => {
     }) 
 }
 
-export const fetchNowPlaying = () => dispatch => {
-  spotifyApi.getMyCurrentPlaybackState()
-    .then(async (response) => {
-      const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
-      const nowPlaying = { 
-        name: response.item.name,
-        artist: response.item.artists[0].name,
-        album: response.item.album.name, 
-        albumArt: response.item.album.images[0].url,
-        lyrics: lyrics
-      }
-      dispatch({
-        type: FETCH_NOW_PLAYING,
-        payload: nowPlaying
-      });
-    })
+export const fetchNowPlaying = () => async dispatch => {
+    const nowPlaying = getNowPlaying();
+    dispatch({
+      type: FETCH_NOW_PLAYING,
+      payload: nowPlaying
+    });
 }
 
 export const fetchRecentlyPlayed = () => dispatch => {
@@ -106,20 +121,13 @@ export const fetchRecentlyPlayed = () => dispatch => {
 }
 
 export const selectTrack = track => async (dispatch) => {
+  console.log("track:", track);
   if (!track) {
-    track = await spotifyApi.getMyCurrentPlaybackState()
-      .then(async (response) => {
-        const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
-        return { 
-          name: response.item.name,
-          artist: response.item.artists[0].name,
-          album: response.item.album.name, 
-          albumArt: response.item.album.images[0].url,
-          lyrics: lyrics
-        }
-      })
+    track = await getNowPlaying();
+  } else {
+    track.lyrics = await getLyrics(track.artist, track.name);
   }
-  track.lyrics = await getLyrics(track.artist, track.name);
+  console.log("track:", track);
   dispatch({
     type: SELECT_TRACK,
     payload: track
