@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {Button, Dropdown } from 'react-bootstrap';
 
 import { 
-  selectTrack
+  selectTrack,
+  fetchRecentlyPlayed
 } from '../redux/actions';
 
 function Navigation(props) {
@@ -35,7 +36,7 @@ function Navigation(props) {
             </Button>
           </li>
           <li className="nav-item">
-            <Dropdown >
+            <Dropdown onClick={props.fetchRecentlyPlayed}>
               <Dropdown.Toggle variant="link">
                 <i className="fas fa-history"></i><span> Recently Played </span>
               </Dropdown.Toggle>
@@ -63,5 +64,5 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { 
-  selectTrack
+  selectTrack, fetchRecentlyPlayed
 })(Navigation);

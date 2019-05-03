@@ -1,5 +1,3 @@
-
-
 import axios from 'axios';
 
 import { 
@@ -31,6 +29,23 @@ const params = getHashParams();
 const token = params.access_token;
 if (token) {
   spotifyApi.setAccessToken(token);
+}
+
+function uniqueTitles(tracks) {
+  const result = [];
+  const map = new Map();
+  for (const item of tracks) {
+      if(!map.has(item.title)){
+          map.set(item.title, true);
+          result.push({
+              name: item.name,
+              artist: item.artist,
+              album: item.album,
+              alumArt: item.albumArt
+          });
+      }
+  }
+  return result;
 }
 
 async function getLyrics(artist, title) {
@@ -103,19 +118,26 @@ export const fetchNowPlaying = () => async dispatch => {
 }
 
 export const fetchRecentlyPlayed = () => dispatch => {
-  spotifyApi.getMyRecentlyPlayedTracks({"limit": 5})
+  spotifyApi.getMyRecentlyPlayedTracks({"limit": 15})
     .then(async (response) => {
-      const recentlyPlayed = response.items.map(item => {
-        return {
-          name: item.track.name,
-          artist: item.track.artists[0].name,
-          album: item.track.album.name,
-          albumArt: item.track.album.images[0].url
+      // Only select unique titles
+      const recentlyPlayed = [];
+      const map = new Map();
+      for (let item of response.items) {
+        if(!map.has(item.track.name)){
+          map.set(item.track.name, true);
+          recentlyPlayed.push({
+              name: item.track.name,
+              artist: item.track.artists[0].name,
+              album: item.track.album.name,
+              albumArt: item.track.album.images[0].url
+          });
         }
-      })
+      }
+
       dispatch({
         type: FETCH_RECENTLY_PLAYED,
-        payload: recentlyPlayed
+        payload: recentlyPlayed.slice(0, 5)
       })
     })
 }
