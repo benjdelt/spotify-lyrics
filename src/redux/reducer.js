@@ -3,6 +3,8 @@ import {
   FETCH_USER,
   SET_TRACK_LOADING,
   SET_TRACK_LOADED,
+  SET_LYRICS_LOADING,
+  SET_LYRICS_LOADED,
   FETCH_NOW_PLAYING,
   FETCH_RECENTLY_PLAYED,
   SELECT_TRACK
@@ -51,6 +53,16 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         trackLoading: false
+      }
+    case SET_LYRICS_LOADING:
+      return {
+        ...state,
+        lyricsLoading: true
+      }
+    case SET_LYRICS_LOADED:
+      return {
+        ...state,
+        lyricsLoading: false
       }
     case FETCH_NOW_PLAYING:
       return {
