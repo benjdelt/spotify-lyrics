@@ -5,8 +5,6 @@ import {
   FETCH_USER,
   SET_TRACK_LOADING,
   SET_TRACK_LOADED,
-  SET_LYRICS_LOADING,
-  SET_LYRICS_LOADED,
   FETCH_NOW_PLAYING,
   FETCH_RECENTLY_PLAYED,
   SELECT_TRACK
@@ -132,9 +130,6 @@ export const selectTrack = track => async (dispatch) => {
   dispatch({
     type: SET_TRACK_LOADING,
   })
-  dispatch({
-    type: SET_LYRICS_LOADING,
-  })
   if (!track) {
     track = await getNowPlaying();
   } else {
@@ -146,8 +141,5 @@ export const selectTrack = track => async (dispatch) => {
   })
   dispatch({
     type: SET_TRACK_LOADED,
-  })
-  dispatch({
-    type: SET_LYRICS_LOADED,
   })
 }

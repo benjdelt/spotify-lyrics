@@ -14,35 +14,29 @@ function Main(props) {
     <main className="col-sm-10">
       {props.loggedIn ? (
         props.selectedTrack ? (
-          <Fragment>
-            <div className="header">
-              {props.trackLoading ? (
-                <Spinner animation="border" variant="light" />
-              ) : (
-                <Fragment>
-                  <img src={props.selectedTrack.albumArt} alt="cover"/>
-                  <div className="info">
-                    <h3>{props.selectedTrack.name}</h3>
-                    <h5>
-                      {props.selectedTrack.artist}
-                    </h5>
-                    <p>{props.selectedTrack.album}</p>
-                  </div>
-                </Fragment>
-              )}
-            </div>
-            <div className="lyrics">
-              {props.lyricsLoading ? (
-                <Spinner animation="border" variant="light" />
-              ) : (
+          props.trackLoading ? (
+            <Spinner animation="border" variant="light" />
+          ) : (
+            <Fragment>
+              <div className="header">
+                <img src={props.selectedTrack.albumArt} alt="cover"/>
+                <div className="info">
+                  <h3>{props.selectedTrack.name}</h3>
+                  <h5>
+                    {props.selectedTrack.artist}
+                  </h5>
+                  <p>{props.selectedTrack.album}</p>
+                </div>
+              </div>
+              <div className="lyrics">
                 <p>{props.selectedTrack.lyrics.map((line, index) =>{
                   return (
                     <span key={index}>{line}<br /></span>
                   )
                 } )}</p>
-              )}
-            </div>
-          </Fragment>
+              </div>
+            </Fragment>
+          )
         ) : (
           <div className="disclaimer">
             <h3>No track is currently playing on this Spotify account</h3>
@@ -74,7 +68,6 @@ const mapStateToProps = state => ({
   nowPlaying: state.nowPlaying,
   selectedTrack: state.selectedTrack,
   trackLoading: state.trackLoading,
-  lyricsLoading: state.lyricsLoading
 });
 
 export default connect(mapStateToProps, { getLoggedIn, fetchNowPlaying, selectTrack })(Main);
