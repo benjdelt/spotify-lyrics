@@ -1,6 +1,8 @@
 import { 
   GET_LOGGED_IN,
   FETCH_USER,
+  SET_TRACK_LOADING,
+  SET_TRACK_LOADED,
   FETCH_NOW_PLAYING,
   FETCH_RECENTLY_PLAYED,
   SELECT_TRACK
@@ -24,6 +26,7 @@ export const initialState = {
     albumArt: '',
     lyrics: []
   },
+  trackLoading: true,
 };
 
 export function reducer(state = initialState, action) {
@@ -37,6 +40,16 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload
+      }
+    case SET_TRACK_LOADING:
+      return {
+        ...state,
+        trackLoading: true
+      }
+    case SET_TRACK_LOADED:
+      return {
+        ...state,
+        trackLoading: false
       }
     case FETCH_NOW_PLAYING:
       return {

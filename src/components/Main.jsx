@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
 import { getLoggedIn, fetchNowPlaying, selectTrack } from '../redux/actions';
 
 function Main(props) {
@@ -13,26 +14,29 @@ function Main(props) {
     <main className="col-sm-10">
       {props.loggedIn ? (
         props.selectedTrack ? (
-          <Fragment>
-            <div className="header">
-              <img src={props.selectedTrack.albumArt} alt="cover"/>
-              <div className="info">
-                <h3>{props.selectedTrack.name}</h3>
-                <h5>
-                  {props.selectedTrack.artist}
-                </h5>
-                <p>{props.selectedTrack.album}</p>
+          props.trackLoading ? (
+            <Spinner animation="border" variant="light" />
+          ) : (
+            <Fragment>
+              <div className="header">
+                <img src={props.selectedTrack.albumArt} alt="cover"/>
+                <div className="info">
+                  <h3>{props.selectedTrack.name}</h3>
+                  <h5>
+                    {props.selectedTrack.artist}
+                  </h5>
+                  <p>{props.selectedTrack.album}</p>
+                </div>
               </div>
-            </div>
-            <div className="lyrics">
-              
-              <p>{props.selectedTrack.lyrics.map((line, index) =>{
-                return (
-                  <span key={index}>{line}<br /></span>
-                )
-              } )}</p>
-            </div>
-          </Fragment>
+              <div className="lyrics">
+                <p>{props.selectedTrack.lyrics.map((line, index) =>{
+                  return (
+                    <span key={index}>{line}<br /></span>
+                  )
+                } )}</p>
+              </div>
+            </Fragment>
+          )
         ) : (
           <div className="disclaimer">
             <h3>No track is currently playing on this Spotify account</h3>
@@ -62,7 +66,8 @@ function Main(props) {
 const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
   nowPlaying: state.nowPlaying,
-  selectedTrack: state.selectedTrack
+  selectedTrack: state.selectedTrack,
+  trackLoading: state.trackLoading,
 });
 
 export default connect(mapStateToProps, { getLoggedIn, fetchNowPlaying, selectTrack })(Main);

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { 
   GET_LOGGED_IN, 
   FETCH_USER,
+  SET_TRACK_LOADING,
+  SET_TRACK_LOADED,
   FETCH_NOW_PLAYING,
   FETCH_RECENTLY_PLAYED,
   SELECT_TRACK
@@ -31,23 +33,6 @@ if (token) {
   spotifyApi.setAccessToken(token);
 }
 
-function uniqueTitles(tracks) {
-  const result = [];
-  const map = new Map();
-  for (const item of tracks) {
-      if(!map.has(item.title)){
-          map.set(item.title, true);
-          result.push({
-              name: item.name,
-              artist: item.artist,
-              album: item.album,
-              alumArt: item.albumArt
-          });
-      }
-  }
-  return result;
-}
-
 async function getLyrics(artist, title) {
   const response = await axios.get(`${process.env.REACT_APP_BASE_URL}lyrics`, {
     params: {
@@ -71,7 +56,6 @@ async function getNowPlaying() {
   }
   nowPlaying = await spotifyApi.getMyCurrentPlaybackState()
     .then(async (response) => {
-      console.log("response:", response)
       if (response && response.item) {
         const lyrics = await getLyrics(response.item.artists[0].name, response.item.name);
         return { 
@@ -143,15 +127,19 @@ export const fetchRecentlyPlayed = () => dispatch => {
 }
 
 export const selectTrack = track => async (dispatch) => {
-  console.log("track:", track);
+  dispatch({
+    type: SET_TRACK_LOADING,
+  })
   if (!track) {
     track = await getNowPlaying();
   } else {
     track.lyrics = await getLyrics(track.artist, track.name);
   }
-  console.log("track:", track);
   dispatch({
     type: SELECT_TRACK,
     payload: track
+  })
+  dispatch({
+    type: SET_TRACK_LOADED,
   })
 }
