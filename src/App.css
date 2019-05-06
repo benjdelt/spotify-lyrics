@@ -164,7 +164,7 @@ header .login:hover {
   }
 
   header .nav-item i {
-    font-size: 25px;
+    font-size: 34px;
   }
 
   header .logo img {
@@ -179,8 +179,8 @@ header .login:hover {
     margin-top: 25px;
   }
 
-  header .user .dropdown-menu {
-    transform: initial;
+  header .user .dropdown-menu.show {
+    transform: initial !important;
   }
 
   .carousel {
