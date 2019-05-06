@@ -176,6 +176,10 @@ main {
   align-items: center;
 }
 
+main .spinner-border {
+  margin: 50px 0;
+}
+
 main .header img {
   float: left;
   margin: 45px 45px 45px -45px;

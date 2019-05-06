@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
 import { getLoggedIn, fetchNowPlaying, selectTrack } from '../redux/actions';
 
 function Main(props) {
@@ -15,22 +16,31 @@ function Main(props) {
         props.selectedTrack ? (
           <Fragment>
             <div className="header">
-              <img src={props.selectedTrack.albumArt} alt="cover"/>
-              <div className="info">
-                <h3>{props.selectedTrack.name}</h3>
-                <h5>
-                  {props.selectedTrack.artist}
-                </h5>
-                <p>{props.selectedTrack.album}</p>
-              </div>
+              {props.trackLoading ? (
+                <Spinner animation="border" variant="light" />
+              ) : (
+                <Fragment>
+                  <img src={props.selectedTrack.albumArt} alt="cover"/>
+                  <div className="info">
+                    <h3>{props.selectedTrack.name}</h3>
+                    <h5>
+                      {props.selectedTrack.artist}
+                    </h5>
+                    <p>{props.selectedTrack.album}</p>
+                  </div>
+                </Fragment>
+              )}
             </div>
             <div className="lyrics">
-              
-              <p>{props.selectedTrack.lyrics.map((line, index) =>{
-                return (
-                  <span key={index}>{line}<br /></span>
-                )
-              } )}</p>
+              {props.lyricsLoading ? (
+                <Spinner animation="border" variant="light" />
+              ) : (
+                <p>{props.selectedTrack.lyrics.map((line, index) =>{
+                  return (
+                    <span key={index}>{line}<br /></span>
+                  )
+                } )}</p>
+              )}
             </div>
           </Fragment>
         ) : (
@@ -62,7 +72,9 @@ function Main(props) {
 const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
   nowPlaying: state.nowPlaying,
-  selectedTrack: state.selectedTrack
+  selectedTrack: state.selectedTrack,
+  trackLoading: state.trackLoading,
+  lyricsLoading: state.lyricsLoading
 });
 
 export default connect(mapStateToProps, { getLoggedIn, fetchNowPlaying, selectTrack })(Main);

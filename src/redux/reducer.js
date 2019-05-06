@@ -24,6 +24,8 @@ export const initialState = {
     albumArt: '',
     lyrics: []
   },
+  trackLoading: true,
+  lyricsLoading: true,
 };
 
 export function reducer(state = initialState, action) {
