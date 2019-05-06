@@ -3,6 +3,8 @@ import axios from 'axios';
 import { 
   GET_LOGGED_IN, 
   FETCH_USER,
+  SET_TRACK_LOADING,
+  SET_TRACK_LOADED,
   FETCH_NOW_PLAYING,
   FETCH_RECENTLY_PLAYED,
   SELECT_TRACK
@@ -91,6 +93,18 @@ export const fetchUser = () => dispatch => {
     }) 
 }
 
+// export const setTrackLoading = (dispatch) => {
+//   dispatch({
+//     type: SET_TRACK_LOADING,
+//   })
+// }
+
+// export const setTrackLoaded = (dispatch) => {
+//   dispatch({
+//     type: SET_TRACK_LOADED,
+//   })
+// }
+
 export const fetchNowPlaying = () => async dispatch => {
     const nowPlaying = getNowPlaying();
     dispatch({
@@ -125,6 +139,9 @@ export const fetchRecentlyPlayed = () => dispatch => {
 }
 
 export const selectTrack = track => async (dispatch) => {
+  dispatch({
+    type: SET_TRACK_LOADING,
+  })
   if (!track) {
     track = await getNowPlaying();
   } else {
@@ -133,5 +150,8 @@ export const selectTrack = track => async (dispatch) => {
   dispatch({
     type: SELECT_TRACK,
     payload: track
+  })
+  dispatch({
+    type: SET_TRACK_LOADED,
   })
 }
