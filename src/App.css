@@ -9,7 +9,7 @@ html, body, #root {
 
 a, .btn-link {
   color: #fff;
-  font-size: 18px;
+  /* font-size: 18px; */
 }
 
 a:hover, .btn-link:hover, .btn-link:focus {
@@ -68,19 +68,19 @@ header .logo h2 {
   font-weight: 600;                                                                                                               
 }
 
-.dropdown-toggle {
+header .dropdown-toggle {
   white-space: normal;
 }
 
-.dropdown-menu.show {
+header .dropdown-menu.show {
   background: #212121;
 }
 
-.dropdown-menu.show a {
+header .dropdown-menu.show a {
   color: #fff;
 }
 
-.dropdown-menu.show a:hover {
+header .dropdown-menu.show a:hover {
   background: #3e3e3e;
 }
 
@@ -149,17 +149,26 @@ header .login:hover {
     justify-content: space-around;
   } 
 
+  header .nav-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
   header .nav-item {
     margin: 15px 0;
     max-width: 25%;
   }
 
   header .nav-item i {
-    font-size: 34px;
+    font-size: 25px;
   }
 
   header .logo img {
     margin-top: 15px;
+  }
+
+  header .recently-played {
+    display: none;
   }
 
   header .user img {

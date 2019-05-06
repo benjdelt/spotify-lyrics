@@ -29,14 +29,14 @@ function Navigation(props) {
         </a>
       </li>
       {props.loggedIn && (
-        <div>
+        <div className="nav-buttons">
           <li className="nav-item">
             <Button variant="link" onClick={() => handleClick("current")}>
               <i className="fas fa-volume-up"></i><span> Currently Playing</span>
             </Button>
           </li>
           <li className="nav-item">
-            <Dropdown onClick={props.fetchRecentlyPlayed}>
+            <Dropdown onClick={props.fetchRecentlyPlayed} className="recently-played">
               <Dropdown.Toggle variant="link">
                 <i className="fas fa-history"></i><span> Recently Played </span>
               </Dropdown.Toggle>
