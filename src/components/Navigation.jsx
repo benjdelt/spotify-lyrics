@@ -21,7 +21,7 @@ function Navigation(props) {
   return (
     <ul className="nav flex-column">
       <li className="nav-item">
-        <a href="/" className="logo">
+        <a href="#" className="logo">
           <div className="image-cont">
             <img src="/images/inverted-logo.png" alt="logo" className="avatar img-responsive"/>
           </div>

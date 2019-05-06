@@ -34,6 +34,7 @@ header {
   flex-direction: column;
   min-height: 100vh;
   overflow: hidden;
+  width: 100%;
 }
 
 header .nav {
@@ -118,6 +119,10 @@ header .login:hover {
   color: #fff;
 }
 
+.carousel {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   header .logo h2{
     display: none;
@@ -151,7 +156,6 @@ header .login:hover {
 
   header .nav-buttons {
     display: flex;
-    justify-content: space-around;
   }
 
   header .nav-item {
@@ -173,6 +177,23 @@ header .login:hover {
 
   header .user img {
     margin-top: 25px;
+  }
+
+  header .user .dropdown-menu {
+    transform: initial;
+  }
+
+  .carousel {
+    display: flex;
+    background: #121212;
+    width: 100%;
+    color: #fff;
+  }
+  
+  .carousel .carousel-item.active {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 }
 
