@@ -1,6 +1,6 @@
 # Spotify-Lyrics
 
-A full stack web app built with **React, Redux** and **Express**. It connects to the **Spotify API** and to **API Seeds Lyrics** to automatically get the information and the lyrics of the track currently being played on the user's Spotify account. Users can also see information and lyrics for the five more recently played tracks on their account,
+A full stack web app built with **React, Redux** and **Express**. It connects to the **Spotify API** and to **API Seeds Lyrics** to automatically get the information and the lyrics of the track currently being played on the user's Spotify account. Users can also see information and lyrics for the five more recently played tracks on their account.
 
 This app is deployed on [Heroku](http://bens-spotify-lyrics.herokuapp.com/).
 
