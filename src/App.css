@@ -9,7 +9,6 @@ html, body, #root {
 
 a, .btn-link {
   color: #fff;
-  font-size: 18px;
 }
 
 a:hover, .btn-link:hover, .btn-link:focus {
@@ -34,6 +33,7 @@ header {
   flex-direction: column;
   min-height: 100vh;
   overflow: hidden;
+  width: 100%;
 }
 
 header .nav {
@@ -57,7 +57,7 @@ header .logo {
 }
 
 header .logo img {
-  margin-top: 30px;
+  margin-top: 40px;
   width: 50px;
   height: 50px;
 }
@@ -68,19 +68,19 @@ header .logo h2 {
   font-weight: 600;                                                                                                               
 }
 
-.dropdown-toggle {
+header .dropdown-toggle {
   white-space: normal;
 }
 
-.dropdown-menu.show {
+header .dropdown-menu.show {
   background: #212121;
 }
 
-.dropdown-menu.show a {
+header .dropdown-menu.show a {
   color: #fff;
 }
 
-.dropdown-menu.show a:hover {
+header .dropdown-menu.show a:hover {
   background: #3e3e3e;
 }
 
@@ -118,6 +118,10 @@ header .login:hover {
   color: #fff;
 }
 
+.carousel {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   header .logo h2{
     display: none;
@@ -149,6 +153,10 @@ header .login:hover {
     justify-content: space-around;
   } 
 
+  header .nav-buttons {
+    display: flex;
+  }
+
   header .nav-item {
     margin: 15px 0;
     max-width: 25%;
@@ -162,8 +170,29 @@ header .login:hover {
     margin-top: 15px;
   }
 
+  header .recently-played {
+    display: none;
+  }
+
   header .user img {
     margin-top: 25px;
+  }
+
+  header .user .dropdown-menu.show {
+    transform: initial !important;
+  }
+
+  .carousel {
+    display: flex;
+    background: #121212;
+    width: 100%;
+    color: #fff;
+  }
+  
+  .carousel .carousel-item.active {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 }
 

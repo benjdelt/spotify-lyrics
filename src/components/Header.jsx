@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import User from './User';
+import RecentCarousel from './RecentCarousel';
 
 import { 
   getLoggedIn,
@@ -19,11 +20,13 @@ function Header(props) {
   }, [])
 
   return (
-    <header className="col-sm-2 order-sm-first">
-      <Navigation />
-      
-      <User />
-    </header>
+    <>
+      <header className="col-sm-2 order-sm-first">
+        <Navigation />
+        <User />
+      </header>
+      <RecentCarousel />
+    </>
   )
 }
 

@@ -21,7 +21,7 @@ function Navigation(props) {
   return (
     <ul className="nav flex-column">
       <li className="nav-item">
-        <a href="/" className="logo">
+        <a href="#" className="logo">
           <div className="image-cont">
             <img src="/images/inverted-logo.png" alt="logo" className="avatar img-responsive"/>
           </div>
@@ -29,14 +29,14 @@ function Navigation(props) {
         </a>
       </li>
       {props.loggedIn && (
-        <div>
+        <div className="nav-buttons">
           <li className="nav-item">
             <Button variant="link" onClick={() => handleClick("current")}>
               <i className="fas fa-volume-up"></i><span> Currently Playing</span>
             </Button>
           </li>
           <li className="nav-item">
-            <Dropdown onClick={props.fetchRecentlyPlayed}>
+            <Dropdown onClick={props.fetchRecentlyPlayed} className="recently-played">
               <Dropdown.Toggle variant="link">
                 <i className="fas fa-history"></i><span> Recently Played </span>
               </Dropdown.Toggle>
