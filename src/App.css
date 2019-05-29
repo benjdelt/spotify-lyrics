@@ -162,6 +162,10 @@ header .login:hover {
     max-width: 25%;
   }
 
+  header .nav-item a {
+    margin-left: 20px;
+  }
+
   header .nav-item i {
     font-size: 34px;
   }

@@ -52,6 +52,11 @@ function Navigation(props) {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+          <li className="nav-item">
+            <a href="http://github.com/benjdelt/spotify-lyrics" target="_blank" rel="noopener noreferrer" class="btn btn-link">
+              <i class="fab fa-github"></i><span> Github Repo</span>
+            </a>
+          </li>
         </div>   
       )}
     </ul>
