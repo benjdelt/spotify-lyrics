@@ -68,6 +68,10 @@ header .logo h2 {
   font-weight: 600;                                                                                                               
 }
 
+header .btn.btn-link {
+  white-space: nowrap;
+}
+
 header .dropdown-toggle {
   white-space: normal;
 }
@@ -141,7 +145,7 @@ header .login:hover {
     margin-top: 20px;
   }
   header .user h6 {
-    margin: 0;
+    margin-left: 0;
   }
 }
 
@@ -155,6 +159,7 @@ header .login:hover {
 
   header .nav-buttons {
     display: flex;
+    justify-content: space-evenly;
   }
 
   header .nav-item {
@@ -162,16 +167,12 @@ header .login:hover {
     max-width: 25%;
   }
 
-  header .nav-item a {
-    margin-left: 20px;
-  }
-
   header .nav-item i {
     font-size: 34px;
   }
 
   header .logo img {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 
   header .recently-played {
