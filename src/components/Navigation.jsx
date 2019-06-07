@@ -53,8 +53,8 @@ function Navigation(props) {
             </Dropdown>
           </li>
           <li className="nav-item">
-            <a href="http://github.com/benjdelt/spotify-lyrics" target="_blank" rel="noopener noreferrer" class="btn btn-link">
-              <i class="fab fa-github"></i><span> Github Repo</span>
+            <a href="http://github.com/benjdelt/spotify-lyrics" target="_blank" rel="noopener noreferrer" className="btn btn-link">
+              <i className="fab fa-github"></i><span> Github Repo</span>
             </a>
           </li>
         </div>   
