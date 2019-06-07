@@ -68,6 +68,10 @@ header .logo h2 {
   font-weight: 600;                                                                                                               
 }
 
+header .btn.btn-link {
+  white-space: nowrap;
+}
+
 header .dropdown-toggle {
   white-space: normal;
 }
