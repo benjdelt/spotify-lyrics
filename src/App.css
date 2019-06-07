@@ -145,7 +145,7 @@ header .login:hover {
     margin-top: 20px;
   }
   header .user h6 {
-    margin: 0;
+    margin-left: 0;
   }
 }
 
