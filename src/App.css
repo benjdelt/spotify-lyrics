@@ -155,6 +155,7 @@ header .login:hover {
 
   header .nav-buttons {
     display: flex;
+    justify-content: space-evenly;
   }
 
   header .nav-item {
