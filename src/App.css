@@ -162,16 +162,12 @@ header .login:hover {
     max-width: 25%;
   }
 
-  header .nav-item a {
-    margin-left: 20px;
-  }
-
   header .nav-item i {
     font-size: 34px;
   }
 
   header .logo img {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 
   header .recently-played {
